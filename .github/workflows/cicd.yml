@@ -23,7 +23,7 @@ jobs:
   commitizen:
     needs: ["molecule"]
     name: "Bump version and create changelog with commitizen"
-    if: "!startsWith(github.event.head_commit.message, 'bump:') && github.event_name == 'push' && github.ref == 'main'"
+    if: "!startsWith(github.event.head_commit.message, 'bump:') && github.event_name == 'push' && github.ref == 'refs/heads/main'"
     runs-on: "ubuntu-latest"
     steps:
       - name: Check out
@@ -43,7 +43,7 @@ jobs:
     name: "Deploy role to Ansible Galaxy"
     needs: ["molecule", "commitizen"]
     runs-on: "ubuntu-latest"
-    if: "github.event_name == 'push' && github.ref == 'main'"
+    if: "github.event_name == 'push' && github.ref == 'refs/heads/main'"
     steps:
       - name: Checkout
         uses: actions/checkout@v3
