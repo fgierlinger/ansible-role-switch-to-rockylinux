@@ -1,0 +1,6 @@
+---
+- hosts: all
+  serial: 1
+  remote_user: root
+  roles:
+    - ../fgierlinger.switch_to_rockylinux

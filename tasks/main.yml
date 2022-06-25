@@ -1,0 +1,35 @@
+---
+# tasks file for centos-to-rocky
+- name: Get content of os-release
+  ansible.builtin.command: grep NAME= /etc/os-release
+  register: os_release_name
+  changed_when: false
+  check_mode: no
+
+- name: only upgrade when release is centos
+  when: "'CentOS' in os_release_name.stdout"
+  block:
+    - name: create storage path
+      ansible.builtin.file:
+        path: "{{ rocky_script_path }}"
+        owner: "{{ rocky_script_path_owner }}"
+        group: "{{ rocky_script_path_group }}"
+        mode: "{{ rocky_script_path_mode }}"
+        state: directory
+
+    - name: get migration script file
+      ansible.builtin.get_url:
+        url: https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh
+        dest: "{{ rocky_script_path }}/migrate2rocky.sh"
+        owner: "{{ rocky_script_owner }}"
+        group: "{{ rocky_script_group }}"
+        mode: "{{ rocky_script_mode }}"
+
+    - name: install required packages
+      ansible.builtin.package:
+        name: [ncurses]
+        state: present
+
+    - name: run migration script
+      ansible.builtin.command: bash {{ rocky_script_path }}/migrate2rocky.sh -r
+      changed_when: true
