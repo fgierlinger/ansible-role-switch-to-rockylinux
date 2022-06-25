@@ -1,3 +1,10 @@
+## v0.2.0 (2022-06-25)
+
+### Feat
+
+- add dependabot config
+- add dependabot config
+
 ## v0.1.0 (2022-06-25)
 
 ### Fix
