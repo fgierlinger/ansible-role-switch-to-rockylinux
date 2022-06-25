@@ -1,0 +1,18 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: Example assertion
+    ansible.builtin.assert:
+      that: true
+  - name: Get content of os-release
+    ansible.builtin.command: grep NAME= /etc/os-release
+    register: os_release_name
+    changed_when: false
+  - name: Verify rocky linux distribution
+    ansible.builtin.assert:
+      that:
+        - "'Rocky Linux' in os_release_name.stdout"

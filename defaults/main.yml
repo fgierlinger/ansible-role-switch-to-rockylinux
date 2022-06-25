@@ -1,0 +1,13 @@
+---
+# defaults file for centos-to-rocky
+
+# Path, owner, group and mode for the directory where the migration script will be stored
+rocky_script_path: /opt
+rocky_script_path_owner: root
+rocky_script_path_group: root
+rocky_script_path_mode: 0755
+
+# Path, owner, group and mode for the migration script.
+rocky_script_owner: root
+rocky_script_group: root
+rocky_script_mode: 0750

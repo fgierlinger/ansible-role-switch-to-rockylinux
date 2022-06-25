@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include switch_to_rockylinux"
+      ansible.builtin.include_role:
+        name: "fgierlinger.switch_to_rockylinux"
