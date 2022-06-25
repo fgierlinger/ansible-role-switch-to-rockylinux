@@ -1,3 +1,4 @@
+name: "CICD"
 on:
   push:
     branches:
@@ -13,9 +14,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      
+
       - name: run molecule
-        uses: gofrolist/molecule-action@v2
+        uses: robertdebock/molecule-action@4.0.8
+        env:
+          ANSIBLE_FORCE_COLOR: '1'
 
   commitizen:
     needs: ["molecule"]
@@ -40,7 +43,7 @@ jobs:
     name: "Deploy role to Ansible Galaxy"
     needs: ["molecule", "commitizen"]
     runs-on: "ubuntu-latest"
-    if: github.event_name == "push" and github.ref == "main"
+    if: "github.event_name == 'push' && github.ref == 'main'"
     steps:
       - name: Checkout
         uses: actions/checkout@v3
