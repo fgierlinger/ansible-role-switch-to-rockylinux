@@ -48,6 +48,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: publish to galaxy
-        uses: robertdebock/galaxy-action@1.2.0
+        uses: robertdebock/galaxy-action@1.2.1
         with:
           galaxy_api_key: ${{ secrets.GALAXY_TOKEN }}
