@@ -27,13 +27,13 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - name: Check out
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
           token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Create bump and changelog
         id: cz
-        uses: commitizen-tools/commitizen-action@master
+        uses: commitizen-tools/commitizen-action@0.13.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Print Version
@@ -51,3 +51,4 @@ jobs:
         uses: robertdebock/galaxy-action@1.2.1
         with:
           galaxy_api_key: ${{ secrets.GALAXY_TOKEN }}
+          git_branch: main
