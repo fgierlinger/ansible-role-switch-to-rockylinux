@@ -1,3 +1,9 @@
+## v0.2.1 (2022-06-27)
+
+### Fix
+
+- specify branch name in deploy action
+
 ## v0.2.0 (2022-06-25)
 
 ### Feat
