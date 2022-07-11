@@ -6,6 +6,14 @@ on:
   pull_request:
     branches:
       - "main"
+  schedule:
+    - cron: "0 7 * * 0"
+
+
+defaults:
+  run:
+    working-directory: 'fgierlinger.switch_to_rockylinux'
+
 
 jobs:
   molecule:
@@ -14,9 +22,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          path: 'fgierlinger.switch_to_rockylinux'
 
       - name: run molecule
-        uses: robertdebock/molecule-action@4.0.8
+        uses: robertdebock/molecule-action@4.0.9
         env:
           ANSIBLE_FORCE_COLOR: '1'
 
