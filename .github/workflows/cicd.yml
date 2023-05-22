@@ -33,7 +33,7 @@ jobs:
           token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Create bump and changelog
         id: cz
-        uses: commitizen-tools/commitizen-action@0.16.3
+        uses: commitizen-tools/commitizen-action@0.18.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Print Version
